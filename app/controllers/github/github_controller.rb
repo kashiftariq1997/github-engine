@@ -57,6 +57,7 @@ module Github
       CreateGithubRepositoryJob.perform_later(
         token,
         user_provided_name,
+        github_current_user.access_token,
         repository.description,
         repository.url,
         github_current_user.username
