@@ -11,7 +11,7 @@ module Github
       @project.update(prefix: params[:github_project][:prefix])
       # @project.update(codegiant_title: params[:project][:codegiant_title], prefix: params[:project][:prefix])
       flash[:notice] = 'Project was updated successfully.'
-      UpdateIssueUserJob.perform_later(@project, @project.github_user_mappings.all.pluck(:github_user_id), @project.github_user_mappings.all.pluck(:github_codegiant_user_id), session[:token] , 7489)
+      UpdateIssueUserJob.perform_later(@project, @project.github_user_mappings.all.pluck(:github_user_id), @project.github_user_mappings.all.pluck(:github_codegiant_user_id), session[:token] , session[:workspace_id])
       redirect_to home_index_path
     end
 

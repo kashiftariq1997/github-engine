@@ -50,12 +50,14 @@ module Github
   
       # Get the token from the params
       token = session[:token]
+      work_space_id = session[:workspace_id]
   
       # Enqueue the job with the token and other parameters
       Rails.logger.info("Enqueuing CreateGithubRepositoryJob with name: #{user_provided_name} and token: #{token}")
   
       CreateGithubRepositoryJob.perform_later(
         token,
+        work_space_id,
         user_provided_name,
         github_current_user.access_token,
         repository.description,

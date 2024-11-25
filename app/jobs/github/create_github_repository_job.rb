@@ -3,11 +3,11 @@ module Github
   class CreateGithubRepositoryJob < ApplicationJob
     queue_as :default
 
-    def perform(token, user_provided_name, access_token, repository_description, repository_url, username)
+    def perform(token, work_space_id, user_provided_name, access_token, repository_description, repository_url, username)
       service = GraphqlMutationService.new(token)
 
       response = service.create_repository(
-        workspace_id: "7489",
+        workspace_id: work_space_id,
         title: user_provided_name,
         access_token: access_token,
         description: repository_description,
