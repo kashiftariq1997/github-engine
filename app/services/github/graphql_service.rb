@@ -16,7 +16,6 @@ module Github
           projects {
             title
             id
-            projectType
             trackingType
             collaborators{
               nodes{
@@ -45,7 +44,7 @@ module Github
         headers: headers
       }
 
-      response = post('/', options)
+      response = post('/', options)      
       response.parsed_response if response.success?
     rescue HTTParty::Error => e
       { "error" => e.message }
